@@ -33,5 +33,24 @@ defmodule CryptoWeb.PageLiveTest do
         assert currency_component =~ expected_label.(name)
       end
     end
+
+    test "changes heart icon when user toggles favorite", %{conn: conn} do
+      {:ok, price_tracker, _html} = live(conn, Routes.price_tracker_path(conn, :index))
+
+      for name <- Ecto.Enum.values(Currency, :name) do
+        assert price_tracker
+               |> element("#currency-component-#{name} div svg.heart-empty")
+               |> render(),
+               "#{name} heart should be empty"
+
+        assert price_tracker
+               |> element("#currency-component-#{name}")
+               |> render_click() =~ "class=\"heart-full"
+
+        assert price_tracker
+               |> element("#currency-component-#{name}")
+               |> render_click() =~ "class=\"heart-empty"
+      end
+    end
   end
 end
