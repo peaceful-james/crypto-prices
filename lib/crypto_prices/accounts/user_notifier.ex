@@ -1,4 +1,7 @@
 defmodule Crypto.Accounts.UserNotifier do
+  @moduledoc """
+  Functions to notify user, by email
+  """
   import Swoosh.Email
 
   alias Crypto.Mailer

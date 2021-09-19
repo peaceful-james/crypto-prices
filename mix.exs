@@ -51,6 +51,7 @@ defmodule Crypto.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.6.0-rc.0"},
+      {:doctor, "~> 0.18.0", only: :dev},
       {:httpoison, "~> 1.7.0"}
     ]
   end
@@ -71,7 +72,8 @@ defmodule Crypto.MixProject do
         "cmd --cd assets npm run deploy",
         "esbuild default --minify",
         "phx.digest"
-      ]
+      ],
+      check: ["format --check-formatted", "credo --strict -A", "doctor --full"]
     ]
   end
 end

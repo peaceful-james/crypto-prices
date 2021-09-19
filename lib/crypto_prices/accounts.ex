@@ -6,7 +6,7 @@ defmodule Crypto.Accounts do
   import Ecto.Query, warn: false
   alias Crypto.Repo
 
-  alias Crypto.Accounts.{User, UserToken, UserNotifier}
+  alias Crypto.Accounts.{User, UserNotifier, UserToken}
 
   ## Database getters
 

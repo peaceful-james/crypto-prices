@@ -1,4 +1,6 @@
 defmodule Crypto.Coinbase do
-  def list_all_prices do
-  end
+  @moduledoc """
+  Module to house high-level coinbase functionality
+  TODO @peaceful-james abstract worker functionality here
+  """
 end

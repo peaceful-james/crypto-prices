@@ -1,4 +1,8 @@
 defmodule Crypto.Currencies.Currency do
+  @moduledoc """
+  A currency as fetched from Coinbase.
+  The name is the coinbase "coin code" as an atom, e.g. :BTC
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

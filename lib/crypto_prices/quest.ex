@@ -123,7 +123,7 @@ defmodule Crypto.Quest do
   @doc """
   Converts a Quest into a nice string for debug log messages
   """
-  @spec debug_string(%Quest{}) :: binary()
+  @spec debug_string(Quest.t()) :: binary()
   def debug_string(q) do
     verb_part = q.verb |> to_string() |> String.upcase()
     uri = URI.merge(q.url, q.path)
@@ -163,7 +163,7 @@ defmodule Crypto.Quest do
                                 |> Kernel.--([:__struct__])
 
     @doc false
-    @spec into(%Quest{}) :: {%Quest{}, (%Quest{}, {:cont, {:base_url, term()}} -> %Quest{})}
+    @spec into(Quest.t()) :: {Quest.t(), (Quest.t(), {:cont, {:base_url, term()}} -> Quest.t())}
     def into(req) do
       {req, &collector/2}
     end

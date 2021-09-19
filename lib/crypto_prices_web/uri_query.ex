@@ -29,8 +29,9 @@ defmodule CryptoWeb.UriQuery do
 
   """
 
-  @noKVListError "parameter for params/1 must be a list of key-value pairs"
+  @no_kv_list_error "parameter for params/1 must be a list of key-value pairs"
 
+  @spec params(Enumerable.t(), Keyword.t()) :: Keyword.t()
   def params(enumerable, opts \\ [])
 
   def params(enumerable, opts) when is_list(enumerable) or is_map(enumerable) do
@@ -39,8 +40,10 @@ defmodule CryptoWeb.UriQuery do
     |> Enum.reverse()
   end
 
-  def params(_, _), do: raise(ArgumentError, @noKVListError)
+  def params(_, _), do: raise(ArgumentError, @no_kv_list_error)
 
+  @spec accumulate_kv_pair(String.t(), {Map.key(), term()}, boolean(), Keyword.t(), Keyword.t()) ::
+          Keyword.t()
   defp accumulate_kv_pair(_, {key, _}, _, _, _) when is_list(key) do
     raise ArgumentError, "params/1 keys cannot be lists, got: #{inspect(key)}"
   end
@@ -87,10 +90,13 @@ defmodule CryptoWeb.UriQuery do
     [{build_key(prefix, key), to_string(value)} | acc]
   end
 
-  defp accumulate_kv_pair(_, _, _, _, _), do: raise(ArgumentError, @noKVListError)
+  defp accumulate_kv_pair(_, _, _, _, _), do: raise(ArgumentError, @no_kv_list_error)
 
+  @spec build_key(String.t(), Map.key()) :: String.t()
+  @spec build_key(String.t(), Map.key(), String.t()) :: String.t()
   defp build_key(prefix, key), do: prefix <> to_string(key)
   defp build_key(prefix, key, suffix), do: prefix <> to_string(key) <> suffix
 
+  @spec build_nested_key(Map.key()) :: String.t()
   defp build_nested_key(nested_key), do: "[#{to_string(nested_key)}]"
 end

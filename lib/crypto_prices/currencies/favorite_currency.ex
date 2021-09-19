@@ -1,4 +1,8 @@
 defmodule Crypto.Currencies.FavoriteCurrency do
+  @moduledoc """
+  A "join-through" schema representing a user's
+  favorited currency, of which they can have many.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

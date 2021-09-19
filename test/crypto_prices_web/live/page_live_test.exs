@@ -1,6 +1,7 @@
 defmodule CryptoWeb.PageLiveTest do
   use CryptoWeb.ConnCase
   import Phoenix.LiveViewTest
+  alias Crypto.Coinbase
   alias Crypto.Currencies.Currency
 
   describe "Authenticated Price Tracker" do
@@ -37,7 +38,7 @@ defmodule CryptoWeb.PageLiveTest do
     test "updates price of currencies in response to \"prices\" broadcasts", %{conn: conn} do
       {:ok, price_tracker, _html} = live(conn, Routes.price_tracker_path(conn, :index))
       name = :BTC
-      Crypto.Coinbase.Worker.handle_info({:fetch_price, name}, %{})
+      Coinbase.Worker.handle_info({:fetch_price, name}, %{})
 
       assert price_tracker
              |> element("#currency-component-#{name}")

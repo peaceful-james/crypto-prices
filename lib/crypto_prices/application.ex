@@ -21,7 +21,12 @@ defmodule Crypto.Application do
     :ok
   end
 
-  def children() do
+  @doc """
+  The list of children to be started as part of the application.
+  The children will be different in different environments.
+  """
+  @spec children() :: [:supervisor.child_spec() | {module, term} | module]
+  def children do
     first_children = [
       Crypto.Repo,
       CryptoWeb.Telemetry,

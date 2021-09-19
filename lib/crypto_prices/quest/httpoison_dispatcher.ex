@@ -24,7 +24,7 @@ defmodule Crypto.Quest.HTTPoisonDispatcher do
   @doc """
   Dispatches a %Quest{} and handles the response
   """
-  @spec dispatch(%Quest{}) :: dispatch_result()
+  @spec dispatch(Quest.t()) :: dispatch_result()
   def dispatch(q) do
     url = URI.merge(q.base_url, q.path) |> URI.to_string()
     options = [{:params, q.params} | q.adapter_options]
