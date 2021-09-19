@@ -1,0 +1,10 @@
+<h1>Crypto Live Price Tracker</h1>
+
+<div class="flex justify-items-stretch justify-between">
+  <%= for {_, currency} <- @currencies do %>
+      <CryptoWeb.CurrencyComponent.show
+        currency={currency}
+        favorite_currency_ids={@favorite_currency_ids}
+        favorite_currency_totals={@favorite_currency_totals} />
+  <% end %>
+</div>
