@@ -11,9 +11,6 @@ defmodule Crypto.Currencies.FavoriteCurrency do
   schema "favorite_currencies" do
     belongs_to :user, Crypto.Accounts.User
     belongs_to :currency, Crypto.Currencies.Currency
-
-    many_to_many :favorite_currencies, Crypto.Currencies.Currency,
-      join_through: Crypto.Currencies.FavoriteCurrency
   end
 
   def changeset(favorite_currency, params) do
