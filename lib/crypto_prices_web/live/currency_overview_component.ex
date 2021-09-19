@@ -1,4 +1,7 @@
 defmodule CryptoWeb.CurrencyOverviewComponent do
+  @moduledoc """
+  A component for displaying the name and price of a coinbase currency
+  """
   use Phoenix.Component
 
   def show(assigns) do

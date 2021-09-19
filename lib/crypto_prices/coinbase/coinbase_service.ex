@@ -1,7 +1,11 @@
 defmodule Crypto.Coinbase.CoinbaseService do
+  @moduledoc """
+  Low-level functions to interact with the Coinbase API
+  """
   alias Crypto.Quest
 
   @type dispatch_result :: {:ok, {scode :: integer(), any()}} | {:error, any()}
+  @spec default_q() :: %Quest{}
   defp default_q do
     %Quest{
       dispatcher: Quest.HTTPoisonDispatcher,

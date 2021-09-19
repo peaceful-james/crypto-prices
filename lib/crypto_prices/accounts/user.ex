@@ -1,4 +1,8 @@
 defmodule Crypto.Accounts.User do
+  @moduledoc """
+  Represents a registered user of the application,
+  as well as their email credential.
+  """
   use Ecto.Schema
   import Ecto.Changeset
   @primary_key {:id, :binary_id, autogenerate: true}

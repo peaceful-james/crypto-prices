@@ -1,4 +1,5 @@
 defmodule CryptoWeb.Telemetry do
+  @moduledoc false
   use Supervisor
   import Telemetry.Metrics
 
@@ -19,6 +20,7 @@ defmodule CryptoWeb.Telemetry do
     Supervisor.init(children, strategy: :one_for_one)
   end
 
+  @spec metrics :: [Telemetry.Metrics.Summary.t()]
   def metrics do
     [
       # Phoenix Metrics
@@ -61,6 +63,7 @@ defmodule CryptoWeb.Telemetry do
     ]
   end
 
+  @spec periodic_measurements :: [{module(), atom(), Keyword.t()}]
   defp periodic_measurements do
     [
       # A module, function and arguments to be invoked periodically.
