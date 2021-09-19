@@ -1,5 +1,5 @@
 defmodule CryptoWeb.UserRegistrationControllerTest do
-  use CryptoWeb.ConnCase, async: true
+  use CryptoWeb.ConnCase
 
   import Crypto.AccountsFixtures
 

@@ -1,5 +1,7 @@
 import Config
 
+config :crypto_prices, env: :dev
+
 # Configure your database
 config :crypto_prices, Crypto.Repo,
   username: System.get_env("USER", "postgres"),
