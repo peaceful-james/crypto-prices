@@ -19,6 +19,8 @@ defmodule CryptoWeb.UserRegistrationControllerTest do
   end
 
   describe "POST /users/register" do
+    setup [:start_coinbase_worker]
+
     @tag :capture_log
     test "creates account and logs the user in", %{conn: conn} do
       email = unique_user_email()

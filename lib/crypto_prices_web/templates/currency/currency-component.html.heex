@@ -1,11 +1,15 @@
-    <div class="flex flex-grow justify-between inline-block p-6 bg-white hover:bg-gray-100 shadow-md border border-gray-200 rounded-lg max-w-sm cursor-pointer" phx-click="toggle-favorite", phx-value-id={@currency.id}>
-      <CryptoWeb.CurrencyOverviewComponent.show currency={@currency} />
-      <div>
-        <p class="text-center m-0"><%= Map.get(@favorite_currency_totals, @currency.id) %></p>
-        <%= if Enum.any?(@favorite_currency_ids, & &1 == @currency.id) do %>
-          <%= Phoenix.View.render(CryptoWeb.CurrencyView, "heart-full.html", %{}) %>
-        <% else %>
-          <%= Phoenix.View.render(CryptoWeb.CurrencyView, "heart-empty.html", %{}) %>
-        <% end %>
-      </div>
-    </div>
+<div id={"currency-component-#{@currency.name}"}
+     phx-click="toggle-favorite"
+     phx-value-id={@currency.id}
+     class="flex flex-grow justify-between inline-block p-6 bg-white hover:bg-gray-100 shadow-md border border-gray-200 rounded-lg max-w-sm cursor-pointer"
+     >
+  <CryptoWeb.CurrencyOverviewComponent.show currency={@currency} />
+  <div>
+    <p class="text-center m-0"><%= Map.get(@favorite_currency_totals, @currency.id) %></p>
+    <%= if Enum.any?(@favorite_currency_ids, & &1 == @currency.id) do %>
+    <%= Phoenix.View.render(CryptoWeb.CurrencyView, "heart-full.html", %{}) %>
+    <% else %>
+    <%= Phoenix.View.render(CryptoWeb.CurrencyView, "heart-empty.html", %{}) %>
+    <% end %>
+  </div>
+</div>

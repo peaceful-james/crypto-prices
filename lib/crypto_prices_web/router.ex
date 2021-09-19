@@ -20,7 +20,7 @@ defmodule CryptoWeb.Router do
   scope "/", CryptoWeb do
     pipe_through :browser
 
-    live "/", PageLive
+    live "/", PageLive, :index, as: :price_tracker
   end
 
   # Other scopes may use custom stacks.

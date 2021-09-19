@@ -34,7 +34,6 @@ defmodule CryptoWeb.ConnCase do
   setup tags do
     pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Crypto.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
-    start_supervised!(Crypto.Coinbase.Worker)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 
@@ -62,5 +61,10 @@ defmodule CryptoWeb.ConnCase do
     conn
     |> Phoenix.ConnTest.init_test_session(%{})
     |> Plug.Conn.put_session(:user_token, token)
+  end
+
+  def start_coinbase_worker(_) do
+    start_supervised!(Crypto.Coinbase.Worker)
+    :ok
   end
 end
