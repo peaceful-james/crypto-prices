@@ -1,4 +1,4 @@
-### Crypto Price
+### Crypto Prices
 
 - Shows prices in real-time for Bitcoin, Ethereum and Dogecoin.
 
