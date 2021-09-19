@@ -34,6 +34,16 @@ defmodule CryptoWeb.PageLiveTest do
       end
     end
 
+    test "updates price of currencies in response to \"prices\" broadcasts", %{conn: conn} do
+      {:ok, price_tracker, _html} = live(conn, Routes.price_tracker_path(conn, :index))
+      name = :BTC
+      Crypto.Coinbase.Worker.handle_info({:fetch_price, name}, %{})
+
+      assert price_tracker
+             |> element("#currency-component-#{name}")
+             |> render() =~ "$420.69"
+    end
+
     test "changes heart icon when user toggles favorite", %{conn: conn} do
       {:ok, price_tracker, _html} = live(conn, Routes.price_tracker_path(conn, :index))
 
