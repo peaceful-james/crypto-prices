@@ -4,6 +4,7 @@
   <%= for {_, currency} <- @currencies do %>
       <CryptoWeb.CurrencyComponent.show
         currency={currency}
+        diff={@diffs[currency.name]}
         favorite_currency_ids={@favorite_currency_ids}
         favorite_currency_totals={@favorite_currency_totals} />
   <% end %>

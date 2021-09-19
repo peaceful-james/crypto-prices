@@ -4,6 +4,7 @@ defmodule CryptoWeb.PageLive do
 
   @prices_topic "prices"
   @favorite_totals_topic "favorite_totals"
+  @zero_price Decimal.new(0)
 
   @impl true
   def mount(_params, session, socket) do
@@ -19,6 +20,7 @@ defmodule CryptoWeb.PageLive do
       socket
       |> assign(%{
         currencies: currencies,
+        diffs: currencies |> Enum.map(&{elem(&1, 0), @zero_price}) |> Enum.into(%{}),
         favorite_currency_totals: favorite_currency_totals
       })
       |> assign_new(
@@ -38,11 +40,24 @@ defmodule CryptoWeb.PageLive do
 
   @impl true
   def handle_info(
-        {:updated_currency, updated_currency},
-        %{assigns: %{currencies: currencies}} = socket
+        {:updated_currency, %{name: name, current_price: current_price} = updated_currency},
+        %{assigns: %{currencies: currencies, diffs: diffs}} = socket
       ) do
-    {:noreply,
-     assign(socket, :currencies, Map.put(currencies, updated_currency.name, updated_currency))}
+    socket =
+      socket
+      |> assign(:currencies, Map.put(currencies, name, updated_currency))
+      |> then(fn socket ->
+        previous_price = Map.get(currencies, name).current_price
+        price_diff = Decimal.sub(current_price, previous_price)
+
+        if Decimal.eq?(price_diff, @zero_price) do
+          socket
+        else
+          assign(socket, :diffs, Map.put(diffs, name, price_diff))
+        end
+      end)
+
+    {:noreply, socket}
   end
 
   @impl true

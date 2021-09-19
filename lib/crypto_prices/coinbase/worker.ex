@@ -12,7 +12,7 @@ defmodule Crypto.Coinbase.Worker do
   # TODO @peaceful-james add specs throughout (use credo)
 
   @prices_topic "prices"
-  @interval :timer.seconds(5)
+  @interval :timer.seconds(2)
   @currency "USD"
   @currency_names Ecto.Enum.values(Currency, :name)
   @default_coin_state %{current_price: "0.0", priced_at: NaiveDateTime.utc_now()}

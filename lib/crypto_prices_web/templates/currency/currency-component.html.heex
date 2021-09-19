@@ -3,7 +3,7 @@
      phx-value-id={@currency.id}
      class="flex flex-grow justify-between inline-block p-6 bg-white hover:bg-gray-100 shadow-md border border-gray-200 rounded-lg max-w-sm cursor-pointer"
      >
-  <CryptoWeb.CurrencyOverviewComponent.show currency={@currency} />
+  <CryptoWeb.CurrencyOverviewComponent.show currency={@currency} diff={@diff} />
   <div>
     <p class="text-center m-0"><%= Map.get(@favorite_currency_totals, @currency.id) %></p>
     <%= if Enum.any?(@favorite_currency_ids, & &1 == @currency.id) do %>
