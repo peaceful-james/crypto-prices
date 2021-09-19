@@ -50,6 +50,7 @@ defmodule Crypto.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:credo, "~> 1.6.0-rc.0"},
       {:httpoison, "~> 1.7.0"}
     ]
   end
