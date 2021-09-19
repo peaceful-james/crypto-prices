@@ -10,7 +10,6 @@ defmodule Crypto.Coinbase.Worker do
   # TODO @peaceful-james move DB job to task in context module
   # TODO @peaceful-james make interval and currency configurable
   # TODO @peaceful-james add specs throughout (use credo)
-  # TODO @peaceful-james add specs throughout (use credo)
 
   @prices_topic "prices"
   @interval :timer.seconds(5)
