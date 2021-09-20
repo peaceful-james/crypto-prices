@@ -1,5 +1,7 @@
 ### Crypto Prices
 
+https://crypto-prices.fly.dev/
+
 - Shows prices in real-time for Bitcoin, Ethereum and Dogecoin.
 
 - Allows logged in user to favorite a crypto.
